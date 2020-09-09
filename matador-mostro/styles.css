@@ -1,0 +1,29 @@
+button {
+	border: none;
+	color: white;
+	padding: 10px 16px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+}
+
+.inicio {
+	background-color: blue;
+}
+
+.desistencia {
+	background-color: lightslategray;
+}
+
+.barra {
+	height: 30px;
+	width: 500px;
+	border: 1px solid #000;
+}
+.progress {
+	background-color: red;
+	height: 100%;
+}
+.progressFull {
+	background-color: green;
+}

@@ -1,0 +1,50 @@
+<!-- development version, includes helpful console warnings -->
+<link rel="stylesheet" href="styles.css">
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="main">
+
+    <template id="scores">
+        <table style="width: 100%; text-align: center;">
+            <tr>
+                <th>Jogador</th>        
+                <th>Monstro</th>
+            </tr>
+            <tr>
+                <td>
+                    <div class="barra">
+                        <div class="progress" :class="progress_jogador" :style="{load_jogador}"></div>
+                    </div>
+                </td>
+                <td>
+                    <div class="barra">
+                        <div class="progress" :class="progress_mostro" :style="{load_mostro}"></div>
+                    </div>
+                </td>
+            </tr>
+        </table>        
+    </template>
+
+    <hr>
+
+    <template id="botoes">
+        <template v-if="!iniciado">
+            <button class="inicio" @click="iniciado = !iniciado">Iniciar Novo Jogo</button>
+        </template>
+        <template v-if="iniciado">
+            <button>Ataque</button>
+            <button>Ataque Especial</button>
+            <button>Curar</button>        
+            <button class="desistencia" @click="desistir">Desistir</button>
+        </template>
+    </template>
+
+    <hr>
+
+    <template id="logs">
+        LOGS
+    </template>
+
+</div>
+
+<script src="app.js"></script>
