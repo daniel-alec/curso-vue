@@ -13,26 +13,32 @@
             <tr>
                 <td>
                     <div class="barra">
-                        <div class="progress" :class="progress_jogador" :style="{load_jogador}"></div>
+                        <div class="progress" :class="progress_jogador" :style="{width: width_jogador}"></div>                        
                     </div>
+                    <div id="porcentagem_jogador">{{width_jogador}}</div>
                 </td>
                 <td>
                     <div class="barra">
-                        <div class="progress" :class="progress_mostro" :style="{load_mostro}"></div>
+                        <div class="progress" :class="progress_mostro" :style="{width: width_mostro}"></div>
                     </div>
+                    <div id="porcentagem_mostro">{{load_mostro}}%</div>
                 </td>
             </tr>
         </table>        
-    </template>
-
-    <hr>
+    </template>    
+    
+    <template v-if="mostrar_mensagem">
+        <hr>
+        <p>{{ resultado }}</p>
+    </template>    
 
     <template id="botoes">
+        <hr>
         <template v-if="!iniciado">
-            <button class="inicio" @click="iniciado = !iniciado">Iniciar Novo Jogo</button>
+            <button class="inicio" @click="iniciar">Iniciar Novo Jogo</button>
         </template>
         <template v-if="iniciado">
-            <button>Ataque</button>
+            <button class="ataque" @click="atacar">Ataque</button>
             <button>Ataque Especial</button>
             <button>Curar</button>        
             <button class="desistencia" @click="desistir">Desistir</button>
