@@ -29,14 +29,45 @@ new Vue({
 			this.mostrar_mensagem = false
 		},
 		atacar() {
-			this.load_jogador -= randomIntFromInterval(9,15)			
-			this.load_mostro -= randomIntFromInterval(5,9)
+			let golpe_monstro = randomIntFromInterval(9,15)
+			let golpe_jogador = randomIntFromInterval(5,9)
+
+			this.load_jogador -= golpe_monstro			
+			this.load_mostro -= golpe_jogador
 
 			if (this.load_jogador < 0) this.load_jogador = 0
 			if (this.load_mostro < 0) this.load_mostro = 0
 
 			this.width_jogador = `${this.load_jogador}%`
 			this.width_mostro = `${this.load_mostro}%`
+
+			this.verificar_resultado()
+		},
+		atacar_especial() {
+			let golpe_monstro = randomIntFromInterval(5,9)
+			let golpe_jogador = randomIntFromInterval(9,15)
+
+			this.load_jogador -= golpe_monstro			
+			this.load_mostro -= golpe_jogador
+
+			if (this.load_jogador < 0) this.load_jogador = 0
+			if (this.load_mostro < 0) this.load_mostro = 0
+
+			this.width_jogador = `${this.load_jogador}%`
+			this.width_mostro = `${this.load_mostro}%`
+
+			this.verificar_resultado()
+		},
+		curar() {
+			let golpe_monstro = randomIntFromInterval(5,9)
+			let cura_jogador = randomIntFromInterval(9,15)
+			
+			this.load_jogador += cura_jogador - golpe_monstro
+
+			if (this.load_jogador < 0) this.load_jogador = 0
+			if (this.load_jogador > 100) this.load_jogador = 100
+
+			this.width_jogador = `${this.load_jogador}%`
 
 			this.verificar_resultado()
 		},

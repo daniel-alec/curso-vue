@@ -31,3 +31,11 @@ button {
 .ataque {
 	background-color: red;	
 }
+
+.ataque_especial {
+	background-color: orange;	
+}
+
+.cura {
+	background-color: green;	
+}
