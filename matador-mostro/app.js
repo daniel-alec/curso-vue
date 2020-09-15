@@ -7,7 +7,8 @@ new Vue({
 		width_jogador: '100%',
 		width_mostro: '100%',
 		mostrar_mensagem: false,
-		resultado: ''
+		resultado: '',
+		logs: []
 	},
 	methods: {
 		iniciar() {
@@ -17,20 +18,18 @@ new Vue({
 			this.width_jogador = '100%',
 			this.width_mostro = '100%',
 			this.resultado = '',
-			this.mostrar_mensagem = false
+			this.mostrar_mensagem = false,
+			this.logs = []
 		},
 		desistir() {
-			this.iniciado = false,
-			this.load_jogador = 100,
-			this.load_mostro = 100,
-			this.width_jogador = '100%',
-			this.width_mostro = '100%',
-			this.resultado = '',
-			this.mostrar_mensagem = false
+			this.iniciar(),
+			this.iniciado = false			
 		},
 		atacar() {
 			let golpe_monstro = randomIntFromInterval(9,15)
 			let golpe_jogador = randomIntFromInterval(5,9)
+
+			this.logs.push({"jogador": "Jogador atingiu " + golpe_jogador, "monstro": "Monstro atingiu "+ golpe_monstro})
 
 			this.load_jogador -= golpe_monstro			
 			this.load_mostro -= golpe_jogador
@@ -47,6 +46,8 @@ new Vue({
 			let golpe_monstro = randomIntFromInterval(5,9)
 			let golpe_jogador = randomIntFromInterval(9,15)
 
+			this.logs.push({"jogador": "Jogador atingiu " + golpe_jogador, "monstro": "Monstro atingiu "+ golpe_monstro})
+
 			this.load_jogador -= golpe_monstro			
 			this.load_mostro -= golpe_jogador
 
@@ -61,7 +62,9 @@ new Vue({
 		curar() {
 			let golpe_monstro = randomIntFromInterval(5,9)
 			let cura_jogador = randomIntFromInterval(9,15)
-			
+
+			this.logs.push({"jogador": "Jogador recebeu " + cura_jogador, "monstro": "Monstro atingiu "+ golpe_monstro})
+
 			this.load_jogador += cura_jogador - golpe_monstro
 
 			if (this.load_jogador < 0) this.load_jogador = 0
@@ -82,7 +85,7 @@ new Vue({
 				this.mostrar_mensagem = true,
 				this.resultado = 'Você ganhou!'
 			}
-			else if (this.load_jogador > 0 && this.load_mostro == 0) {
+			else if (this.load_jogador == 0 && this.load_mostro == 0) {
 				this.iniciado = false
 				this.mostrar_mensagem = true,
 				this.resultado = 'Empataram!'

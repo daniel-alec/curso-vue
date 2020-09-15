@@ -39,3 +39,11 @@ button {
 .cura {
 	background-color: green;	
 }
+
+.log_jogador {
+	color: dodgerblue;	
+}
+
+.log_monstro {
+	color: lightcoral;	
+}

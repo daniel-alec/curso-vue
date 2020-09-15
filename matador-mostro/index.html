@@ -2,6 +2,11 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="styles.css">
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<style>
+    ul {
+        list-style: none;
+    }
+</style>
 
 <div id="main">
 
@@ -46,10 +51,14 @@
         </template>
     </template>
 
-    <hr>
-
-    <template id="logs">
-        LOGS
+    <template v-if="logs.length > 0">
+        <hr>
+        <ul>
+            <template v-for="(log, i) in logs.slice().reverse()">
+                <li class="log_jogador">{{ log.jogador }}</li>
+                <li class="log_monstro">{{ log.monstro }}</li>
+            </template>
+        </ul>
     </template>
 
 </div>
