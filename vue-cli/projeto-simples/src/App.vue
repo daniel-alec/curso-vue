@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     {{ titulo }}
-    <button @click="titulo += '#'">Alterar</button>
+    <button @click="titulo += '#'">Alterar2</button>
   </div>
 </template>
 
