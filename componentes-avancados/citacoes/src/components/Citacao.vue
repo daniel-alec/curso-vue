@@ -1,13 +1,31 @@
 <template>
     <div class="citacao">
         <!-- {{ texto }} -->
-        <slot></slot>
+        <slot name="autor"></slot>
+        <slot name="texto"></slot>
+        <slot name="fonte"></slot>
     </div>
 </template>
 
 <script>
 export default {
     // props: ['texto']
+    created() {
+        // eslint-disable-next-line
+        console.log('created')
+    },
+    destroyed() {
+        // eslint-disable-next-line
+        console.log('destroyed')
+    },
+    activated() {
+        // eslint-disable-next-line
+        console.log('activated')
+    },
+    deactivated() {
+        // eslint-disable-next-line
+        console.log('deactivated')
+    }
 }
 </script>
 

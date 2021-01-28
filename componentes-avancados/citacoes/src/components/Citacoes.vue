@@ -8,9 +8,9 @@
         <!-- {{ citacoes[indice].texto }}       -->
         <!-- <Citacao :texto="citacoes[indice].texto" />  -->
         <Citacao>
-            <h1>{{ citacoes[indice].autor }}</h1>
-            <p>{{ citacoes[indice].texto }}</p>
-            <h6>{{ citacoes[indice].fonte }}</h6>
+            <h1 slot="autor">{{ citacoes[indice].autor }}</h1>
+            <p slot="texto">{{ citacoes[indice].texto }}</p>
+            <h6 slot="fonte">{{ citacoes[indice].fonte }}</h6>
         </Citacao>
     </div>
 </template>
@@ -42,6 +42,22 @@ export default {
         indice() {
             return Math.abs(this.numero % 3)
         }
+    },
+    created() {
+        // eslint-disable-next-line
+        console.log('created')
+    },
+    destroyed() {
+        // eslint-disable-next-line
+        console.log('destroyed')
+    },
+    activated() {
+        // eslint-disable-next-line
+        console.log('activated')
+    },
+    deactivated() {
+        // eslint-disable-next-line
+        console.log('deactivated')
     }
 }
 </script>
