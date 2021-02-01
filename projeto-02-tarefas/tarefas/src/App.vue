@@ -1,11 +1,18 @@
 <template>
 	<div id="app">
 		<h1>Tarefas</h1>
+		<progress-bar/>
+		<add-todo/>
+		<todos/>
 	</div>
 </template>
 
 <script>
+import AddTodo from './components/AddTodo.vue'
+import ProgressBar from './components/ProgressBar.vue'
+import Todos from './components/Todos.vue'
 export default {
+  components: { ProgressBar, AddTodo, Todos },
 
 }
 </script>
