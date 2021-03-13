@@ -2,7 +2,7 @@
 	<div id="app">
 		<h1>Registrar Reclamação</h1>
 		<div class="conteudo">
-			<form class="painel">
+			<form class="painel" v-if="!enviado">
 				<div class="cabecalho">Formulário</div>
 				<Rotulo nome="E-mail">
 					<input type="text" v-model.lazy.trim="usuario.email">
@@ -30,17 +30,22 @@
 					<span><input type="radio" value="outro" v-model="produto"> Outro</span>
 				</Rotulo>
 				<Rotulo nome="Prioridade">
-					<select name="" id="">
-						<option></option>
+					<select v-model="prioridade">
+						<option v-for="prioridade in prioridades" 
+							:value="prioridade.codigo"
+							:key="prioridade.codigo"
+							:selected="prioridade.codigo === 3">
+							{{ prioridade.codigo }} - {{ prioridade.nome }}
+						</option>
 					</select>
 				</Rotulo>
 				<Rotulo nome="Primeira Reclamação?">
-					<Escolha />
+					<Escolha v-model="escolha"/>
 				</Rotulo>
 				<hr>
-				<button>Enviar</button>
+				<button @click.prevent="enviar">Enviar</button>
 			</form>
-			<div class="painel">
+			<div class="painel" v-else>
 				<div class="cabecalho">Resultado</div>
 				<Rotulo nome="E-mail">
 					<span>{{ usuario.email }}</span>
@@ -65,10 +70,10 @@
 					<span>{{ produto }}</span>
 				</Rotulo>
 				<Rotulo nome="Prioridade">
-					<span>???</span>
+					<span>{{ prioridade }} {{ tipoPrioridade }}</span>
 				</Rotulo>
 				<Rotulo nome="Primeira Reclamação?">
-					<span>???</span>
+					<span>{{ escolha }}</span>
 				</Rotulo>
 			</div>
 		</div>
@@ -82,16 +87,37 @@ import Escolha from './components/Escolha.vue'
 export default {
 	name: 'app',
 	components: { Rotulo, Escolha },
+	computed: {
+		tipoIdade() {
+			return typeof this.usuario.idade
+		},
+		tipoPrioridade() {
+			return typeof this.prioridade
+		}
+	},
+	methods: {
+		enviar() {
+			this.enviado = true
+		}
+	},
 	data() {
 		return {
 			mensagem: '',
 			caracteristias: [],
 			produto: 'web',
+			prioridade: 1,
+			prioridades: [
+				{ codigo: 1, nome: 'Baixa' },
+				{ codigo: 2, nome: 'Moderada' },
+				{ codigo: 3, nome: 'Alta'}
+			],
 			usuario: {
 				email: '',
 				senha: '',
 				idade: 25
-			}
+			},
+			escolha: true,
+			enviado: false
 		}
 	}
 }
